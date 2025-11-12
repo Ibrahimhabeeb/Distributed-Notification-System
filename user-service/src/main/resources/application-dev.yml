@@ -1,0 +1,28 @@
+server:
+  port: 5001
+
+auth:
+  token:
+    expirationInMils: 3600000
+    jwtSecret: 36763979244226452948404D635166546A576D5A7134743777217A25432A462D
+spring:
+  application:
+    name: USER-SERVICE
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hngntifyuser
+    username: hnguser
+    password: hngpassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}

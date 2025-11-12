@@ -1,0 +1,29 @@
+# api-gateway/src/main/resources/application.yml
+server:
+  port: 5000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
+        - id: notify-publisher
+          uri: lb://PUBLISHER-SERVICE
+          predicates:
+            - Path=/api/v1/notify/**
+auth:
+  token:
+    expirationInMils: 3600000
+    jwtSecret: 36763979244226452948404D635166546A576D5A7134743777217A25432A462D
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+
+
