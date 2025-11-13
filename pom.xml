@@ -18,7 +18,7 @@
 	<modules>
 <!--        <module>push-service</module>-->
 		<module>user-service</module>
-<!--		<module>email-service</module>-->
+		<module>email-service</module>
 		<module>common-lib</module>
 		<module>apigateway</module>
 		<module>notification-dispatcher</module>
