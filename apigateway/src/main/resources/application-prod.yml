@@ -10,14 +10,13 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/v1/users/**
+          - Path=/api/v1/users/**,/api/v1/auth/**
         - id: notify-publisher
           uri: lb://PUBLISHER-SERVICE
           predicates:
             - Path=/api/v1/notify/**
 auth:
   token:
-
     expirationInMils: ${AUTH_TOKEN_EXPIRATION:3600000}
     jwtSecret: ${AUTH_TOKEN_SECRET}
 management:
