@@ -5,6 +5,7 @@ import com.hng.user_service.dtos.UserCreationRequest;
 import com.hng.user_service.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +33,7 @@ public class AuthController {
                 .message("Registration successful.")
                 .build();
 
-        return ResponseEntity.ok(apiResponse);
+        return ResponseEntity.status(201).body(apiResponse);
     }
 
 

@@ -1,4 +1,4 @@
-package com.hng.dtos;
+package com.hng.notification_dispatcher.dtos;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,22 +7,13 @@ import lombok.NoArgsConstructor;
 
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class ApiResponse<T> {
-
-    private boolean success;
-
-
-
-    private T data;
+public class NotificationResponse {
+    private String status;
+    @JsonProperty("request_id")
+    private String requestId;
 
 
-    private String error;
-
-
-    private String message;
-
-    private PaginationMeta meta;
 }

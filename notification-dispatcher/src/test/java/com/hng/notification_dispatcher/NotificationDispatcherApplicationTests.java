@@ -1,12 +1,10 @@
-package com.hng.user_service;
+package com.hng.notification_dispatcher;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@ActiveProfiles("dev")
-class UserServiceApplicationTests {
+class NotificationDispatcherApplicationTests {
 
 	@Test
 	void contextLoads() {

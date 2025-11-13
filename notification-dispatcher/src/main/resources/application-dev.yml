@@ -1,0 +1,18 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+rabbitmq:
+  exchange:
+    name: notifications.direct
+  queues:
+    email: email.queue
+    push: push.queue
+    failed: failed.queue
+  routing-keys:
+    email: email
+    push: push
+    failed: failed

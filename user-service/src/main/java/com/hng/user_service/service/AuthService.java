@@ -25,14 +25,19 @@ public class AuthService {
     public AuthResponse register(UserCreationRequest request) {
 
         userRepository.findByEmail(request.getEmail())
-                .ifPresent(u -> { throw new BadRequestException("Email already in use"); });
+                .ifPresent(u -> { throw new BadRequestException("User already exists"); });
 
         var user = User.builder()
+                .name(request.getName())
                 .email(request.getEmail())
-                .passwordHash(passwordEncoder.encode(request.getPassword())).name(request.getName())
+                .passwordHash(passwordEncoder.encode(request.getPassword()))
                 .pushToken(request.getPushToken())
+                .emailPref((Boolean) request.getPreferences().getOrDefault("email", true))
+                .pushPref((Boolean) request.getPreferences().getOrDefault("push", false))
                 .build();
+
         userRepository.save(user);
+
 
         var jwtToken = jwtUtils.generateToken(user.getId(), user.getEmail());
         return new AuthResponse(jwtToken, user.getId());

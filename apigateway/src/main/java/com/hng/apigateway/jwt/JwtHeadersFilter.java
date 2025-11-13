@@ -7,28 +7,33 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+
 @Component
 public class JwtHeadersFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+
+        String path = exchange.getRequest().getPath().value();
+        if (path.startsWith("/api/v1/auth")) {
+            return chain.filter(exchange);
+        }
+
         return exchange.getPrincipal()
                 .cast(JwtAuthenticationToken.class)
                 .flatMap(auth -> {
                     Jwt jwt = auth.getToken();
                     String userId = jwt.getClaim("userId");
                     String email = jwt.getSubject();
-//                    String roles = jwt.getClaimAsString("roles");
 
                     exchange.getRequest().mutate()
                             .header("X-Gateway-Verified", "true")
                             .header("X-User-Id", userId)
                             .header("X-User-Email", email)
-//                            .header("X-User-Roles", roles != null ? roles : "")
                             .build();
 
                     return chain.filter(exchange);
-                });
+                })
+                .switchIfEmpty(chain.filter(exchange));
     }
 }
-
