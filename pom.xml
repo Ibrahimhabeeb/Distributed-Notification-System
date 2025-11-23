@@ -16,12 +16,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<modules>
-<!--        <module>push-service</module>-->
+
 		<module>user-service</module>
-		<module>email-service</module>
 		<module>common-lib</module>
 		<module>apigateway</module>
 		<module>notification-dispatcher</module>
+	<module>email-service</module>
+
 	</modules>
 	<dependencyManagement>
 		<dependencies>

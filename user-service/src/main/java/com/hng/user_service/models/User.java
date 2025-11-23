@@ -25,12 +25,6 @@ public class User {
     @Column(nullable = false)
     private String passwordHash;
     private String name;
-
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    @CollectionTable(name="user_roles", joinColumns=@JoinColumn(name="user_id"))
-//    @Column(name="role")
-//    private Set<String> roles;
-
     private String pushToken;
     @Column(name = "email_pref")
     private boolean emailPref;

@@ -1,6 +1,5 @@
 server:
   port: 5001
-
 auth:
   token:
     expirationInMils: 3600000
@@ -8,21 +7,23 @@ auth:
 spring:
   application:
     name: USER-SERVICE
-
-
   datasource:
     url: jdbc:postgresql://localhost:5433/hngntifyuser
     username: hnguser
     password: hngpassword
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-
-
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+#management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: "*"
+#   endpoint:
+#     health:
+#       show-details: always
+#   health:
+#     circuitbreakers:
+#       enabled: true
