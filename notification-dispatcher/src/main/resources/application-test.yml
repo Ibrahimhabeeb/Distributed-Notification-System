@@ -2,12 +2,9 @@ spring:
   application:
     name: notification_dispatcher
   rabbitmq:
-    host: ${RABBITMQ_URL}
-    port: 5671
-    username: ${RABBITMQ_USERNAME}
-    password: ${RABBITMQ_PASSWORD}
-    ssl:
-      enabled: true
+    addresses: amqp://guest:guest@localhost:5672
+    username: guest
+    password: guest
 rabbitmq:
   exchange:
     name: notifications.direct
@@ -21,5 +18,3 @@ rabbitmq:
     failed: failed
 server:
   port: 5002
-
-

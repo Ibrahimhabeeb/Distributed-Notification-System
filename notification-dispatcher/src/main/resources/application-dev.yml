@@ -1,10 +1,10 @@
 spring:
+  application:
+    name: notification_dispatcher
   rabbitmq:
-    host: localhost
-    port: 5672
+    addresses: amqp://guest:guest@localhost:5672
     username: guest
     password: guest
-
 rabbitmq:
   exchange:
     name: notifications.direct
@@ -16,3 +16,29 @@ rabbitmq:
     email: email
     push: push
     failed: failed
+server:
+  port: 5002
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        register-health-indicator: true
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        sliding-window-size: 10
+  retry:
+    instances:
+      myRetry:
+        max-attempts: 3
+        wait-duration: 2s

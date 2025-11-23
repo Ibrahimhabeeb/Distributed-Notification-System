@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: EMAIL-SERVICE
+  rabbitmq:
+    host: ${RABBITMQ_URL}
+    port: 5671
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    ssl:
+      enabled: true
+mailerSend:
+  api:
+    key: mlsn.4e34e95d7237869b0adffc8b7271c8a794c26ad28302660298d6ac547a22528e
+    base-url: https://api.mailersend.com/v1/
+    from-email: ibrahim.habeeb2004@gmail.com
+    from-name: HNG68
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+  queues:
+    email: email.queue
+template:
+  service:
+    url: https://templateservice-api.up.railway.app/api/v1
+server:
+  port: 5004
